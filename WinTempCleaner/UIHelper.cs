@@ -14,27 +14,6 @@ namespace WinTempCleaner
         {
             this.FileService = fileService;
         }
-
-        public void ShowFailedFiles()
-        {
-            if (FileService.FailedFileDeleteCount != 0)
-            {
-                foreach (string file in FileService.tempFileErrorName)
-                {
-                    Console.WriteLine($"The file {file} could not be deleted probably due to being in use by an application or needing administrator access");
-                }
-            }
-        }
-        public void ShowFailedDirectories()
-        {
-            if (FileService.FailedDirDeleteCount != 0)
-            {
-                foreach (string file in FileService.tempDirErrorName)
-                {
-                    Console.WriteLine($"The file {file} could not be deleted probably due to being in use by an application or needing administrator access");
-                }
-            }
-        }
         public void ShowDeletedFilesCount()
         {
             Console.WriteLine($"{FileService.DeletedFileCount} Files Deleted!");
