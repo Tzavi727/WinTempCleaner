@@ -1,4 +1,4 @@
-﻿using WinTempClear;
+﻿using WinTempCleaner;
 
 FileService fileService = new();
 UIHelper uIHelper = new(fileService);
