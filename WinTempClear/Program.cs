@@ -1,44 +1,15 @@
-﻿string tempPath = Path.GetTempPath();
+﻿using WinTempClear;
 
-var tempFiles = Directory.GetFiles(tempPath);
+FileService fileService = new();
 
-var tempDirectories = Directory.GetDirectories(tempPath);
+string tempPath = fileService.GetTempPath();
 
-int filesCount = 0;
-int failCount = 0;
+var tempFiles = fileService.GetTempFiles(tempPath);
 
-foreach (var file in tempFiles)
-{
-    try
-    {
-        File.Delete(file);
-        filesCount++;
-    }
-    catch (IOException )
-    {
-        Console.WriteLine($"The file {Path.GetFileName(file)} could not be deleted");
-        failCount++;
-    }
-}
+var tempDir = fileService.GetTempDirectories(tempPath);
 
-foreach (var dir in tempDirectories)
-{
-    try
-    {
-        Directory.Delete(dir,true);
-        filesCount++;
-    }
-    catch (IOException)
-    {
-        Console.WriteLine($"The directory {Path.GetFileName(dir)} could not be deleted");
-        failCount++;
-    }
-    catch (UnauthorizedAccessException)
-    {
-        Console.WriteLine($"The directory {Path.GetFileName(dir)} could not be deleted");
-        failCount++;
-    }
-}
+fileService.CleanTempFiles(tempFiles);
+fileService.CleanTempDirectories(tempDir);
 
-Console.WriteLine($"{filesCount} Files Deleted!");
-Console.WriteLine($"{failCount} Files couldn't be deleted, Probably by being in use by an application or needing administrator access");
+Console.WriteLine($"{fileService.deleteCount} Files Deleted!");
+Console.WriteLine($"{fileService.failedDeleteCount} Files couldn't be deleted, Probably by being in use by an application or needing administrator access");
