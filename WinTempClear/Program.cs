@@ -1,6 +1,7 @@
 ﻿using WinTempClear;
 
 FileService fileService = new();
+UIHelper uIHelper = new(fileService);
 
 string tempPath = fileService.GetTempPath();
 
@@ -11,5 +12,7 @@ var tempDir = fileService.GetTempDirectories(tempPath);
 fileService.CleanTempFiles(tempFiles);
 fileService.CleanTempDirectories(tempDir);
 
-Console.WriteLine($"{fileService.deleteCount} Files Deleted!");
-Console.WriteLine($"{fileService.failedDeleteCount} Files couldn't be deleted, Probably by being in use by an application or needing administrator access");
+uIHelper.ShowFailedFiles();
+uIHelper.ShowFailedDirectories();
+uIHelper.ShowDeletedFilesCount();
+uIHelper.ShowDeletedDirCount();

@@ -8,8 +8,12 @@ namespace WinTempClear
 {
     internal class FileService
     {
-        public int deleteCount { get; private set; } = 0;
-        public int failedDeleteCount { get; private set; } = 0;
+        public int deletedFileCount { get; private set; } = 0;
+        public int failedFileDeleteCount { get; private set; } = 0;
+        public int deletedDirCount { get; private set; } = 0;
+        public int failedDirDeleteCount { get; private set; } = 0;
+        public List<string> tempFileErrorName { get; private set; } = new List<string>();
+        public List<string> tempDirErrorName { get; private set; }  = new List<string>();
 
         public string GetTempPath()
         {
@@ -33,17 +37,17 @@ namespace WinTempClear
                 try
                 {
                     Directory.Delete(dir, true);
-                    deleteCount++;
+                    deletedDirCount++;
                 }
                 catch (IOException)
                 {
-                    Console.WriteLine($"The directory {Path.GetFileName(dir)} could not be deleted");
-                    failedDeleteCount++;
+                    tempDirErrorName.Add(Path.GetDirectoryName(dir) ?? "Unnamed Directory");
+                    failedDirDeleteCount++;
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Console.WriteLine($"The directory {Path.GetFileName(dir)} could not be deleted");
-                    failedDeleteCount++;
+                    tempDirErrorName.Add(Path.GetDirectoryName(dir) ?? "Unnamed Directory");
+                    failedDirDeleteCount++;
                 }
             }
         }
@@ -55,18 +59,18 @@ namespace WinTempClear
                 try
                 {
                     File.Delete(file);
-                    deleteCount++;
+                    deletedFileCount++;
                 }
 
                 catch (IOException)
                 {
-                    Console.WriteLine($"The file {Path.GetFileName(file)} could not be deleted");
-                    failedDeleteCount++;
+                    tempFileErrorName.Add(Path.GetFileName(file) ?? "Unnamed File");
+                    failedFileDeleteCount++;
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Console.WriteLine($"The file {Path.GetFileName(file)} could not be deleted");
-                    failedDeleteCount++;
+                    tempFileErrorName.Add(Path.GetFileName(file) ?? "Unnamed File");
+                    failedFileDeleteCount++;
                 }
             }
         }
