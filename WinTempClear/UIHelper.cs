@@ -8,18 +8,18 @@ namespace WinTempClear
 {
     internal class UIHelper
     {
-        private readonly FileService fileService;
+        private readonly FileService FileService;
 
         public UIHelper(FileService fileService)
         {
-            this.fileService = fileService;
+            this.FileService = fileService;
         }
 
         public void ShowFailedFiles()
         {
-            if (fileService.failedFileDeleteCount != 0)
+            if (FileService.FailedFileDeleteCount != 0)
             {
-                foreach (string file in fileService.tempFileErrorName)
+                foreach (string file in FileService.tempFileErrorName)
                 {
                     Console.WriteLine($"The file {file} could not be deleted probably due to being in use by an application or needing administrator access");
                 }
@@ -27,9 +27,9 @@ namespace WinTempClear
         }
         public void ShowFailedDirectories()
         {
-            if (fileService.failedDirDeleteCount != 0)
+            if (FileService.FailedDirDeleteCount != 0)
             {
-                foreach (string file in fileService.tempDirErrorName)
+                foreach (string file in FileService.tempDirErrorName)
                 {
                     Console.WriteLine($"The file {file} could not be deleted probably due to being in use by an application or needing administrator access");
                 }
@@ -37,11 +37,11 @@ namespace WinTempClear
         }
         public void ShowDeletedFilesCount()
         {
-            Console.WriteLine($"{fileService.deletedFileCount} Files Deleted!");
+            Console.WriteLine($"{FileService.DeletedFileCount} Files Deleted!");
         }
         public void ShowDeletedDirCount()
         {
-            Console.WriteLine($"{fileService.deletedDirCount} Files deleted ");
+            Console.WriteLine($"{FileService.DeletedDirCount} Files deleted ");
         }
     }
 }
