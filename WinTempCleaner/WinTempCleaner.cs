@@ -10,9 +10,5 @@ var tempDir = fileService.GetTempDirectories(tempPath);
 fileService.CleanTempFiles(tempFiles);
 fileService.CleanTempDirectories(tempDir);
 
-uIHelper.ShowFailedFiles();
-uIHelper.ShowFailedDirectories();
-uIHelper.ShowDeletedFilesCount();
-uIHelper.ShowDeletedDirCount();
-
+uIHelper.ShowEndingSummary();
 uIHelper.FinishedMessage();
