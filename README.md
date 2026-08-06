@@ -2,6 +2,8 @@
 
 WinTempCleaner is a temporary files cleaner. It searches your temporary files directory and automatically cleans it for you.
 
+![WinTempCleaner Screenshot](assets/EndingSummary.jpeg)
+
 ---
 
 ## Features
