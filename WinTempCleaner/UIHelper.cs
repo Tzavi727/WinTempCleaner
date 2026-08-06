@@ -43,5 +43,10 @@ namespace WinTempCleaner
         {
             Console.WriteLine($"{FileService.DeletedDirCount} Files deleted ");
         }
+        public void FinishedMessage()
+        {
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey(true);
+        }
     }
 }

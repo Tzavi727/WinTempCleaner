@@ -15,4 +15,4 @@ uIHelper.ShowFailedDirectories();
 uIHelper.ShowDeletedFilesCount();
 uIHelper.ShowDeletedDirCount();
 
-Console.ReadLine();
+uIHelper.FinishedMessage();
