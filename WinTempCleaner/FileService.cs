@@ -8,6 +8,7 @@ namespace WinTempCleaner
 {
     internal class FileService
     {
+        public bool isRunning { get; private set; } = false;
         public int DeletedFileCount { get; private set; } = 0;
         public int FailedFileDeleteCount { get; private set; } = 0;
         public int DeletedDirCount { get; private set; } = 0;
@@ -28,6 +29,24 @@ namespace WinTempCleaner
         public string[] GetTempDirectories(string path)
         {
             return Directory.GetDirectories(path);
+        }
+
+        public Task CleanAll(string[] files, string[] directories)
+        {
+            isRunning = true;
+
+            return Task.Run(async () =>
+            {
+                try
+                {
+                    CleanTempFiles(files);
+                    CleanTempDirectories(directories);
+
+                    //Delay just so the user can actually see the "animation".
+                    await Task.Delay(5000);
+                }
+                finally { isRunning = false; }
+            });
         }
 
         public void CleanTempDirectories(string[] directories)
