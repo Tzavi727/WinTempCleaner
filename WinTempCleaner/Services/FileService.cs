@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WinTempCleaner.Interfaces;
 
-namespace WinTempCleaner
+namespace WinTempCleaner.Services
 {
     internal class FileService : IFileService
     {

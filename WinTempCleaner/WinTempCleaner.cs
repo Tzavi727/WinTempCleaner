@@ -1,4 +1,5 @@
-﻿using WinTempCleaner;
+﻿using WinTempCleaner.Helpers;
+using WinTempCleaner.Services;
 
 FileService fileService = new();
 var loadingService = new LoadingService(fileService);
