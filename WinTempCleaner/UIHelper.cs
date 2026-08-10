@@ -8,19 +8,19 @@ namespace WinTempCleaner
 {
     internal class UIHelper
     {
-        private readonly FileService FileService;
+        private readonly IFileService fileService;
 
-        public UIHelper(FileService fileService)
+        public UIHelper(IFileService fileService)
         {
-            this.FileService = fileService;
+            this.fileService = fileService;
         }
         public void ShowDeletedFilesCount()
         {
-            Console.WriteLine($"{FileService.DeletedFileCount} Files Deleted!");
+            Console.WriteLine($"{fileService.DeletedFileCount} Files Deleted!");
         }
         public void ShowDeletedDirCount()
         {
-            Console.WriteLine($"{FileService.DeletedDirCount} Files deleted ");
+            Console.WriteLine($"{fileService.DeletedDirCount} Files deleted ");
         }
         public void FinishedMessage()
         {
@@ -31,10 +31,10 @@ namespace WinTempCleaner
         public void ShowEndingSummary()
         {
             Console.WriteLine("======================= WIN TEMP CLEANER =======================");
-            Console.WriteLine($"- Deleted: {FileService.DeletedFileCount} Files. -");
-            Console.WriteLine($"- Deleted: {FileService.DeletedDirCount} Directories. -");
-            Console.WriteLine($"- Skipped: {FileService.FailedFileDeleteCount} Files (In use or Permission Denied). -");
-            Console.WriteLine($"- Skipped: {FileService.FailedDirDeleteCount} Directories (In use or Permission Denied). -");
+            Console.WriteLine($"- Deleted: {fileService.DeletedFileCount} Files. -");
+            Console.WriteLine($"- Deleted: {fileService.DeletedDirCount} Directories. -");
+            Console.WriteLine($"- Skipped: {fileService.FailedFileDeleteCount} Files (In use or Permission Denied). -");
+            Console.WriteLine($"- Skipped: {fileService.FailedDirDeleteCount} Directories (In use or Permission Denied). -");
         }
     }
 }

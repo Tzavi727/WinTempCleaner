@@ -12,16 +12,16 @@ namespace WinTempCleaner
 
         private int periodCount = 1;
 
-        private readonly FileService fileService;
+        private readonly IFileService fileService;
 
-        public LoadingService(FileService fileService)
+        public LoadingService(IFileService fileService)
         {
             this.fileService = fileService;
         }
 
         public async Task LoadingAnimation()
         {
-            while (fileService.isRunning)
+            while (fileService.IsRunning)
             {
                 if (periodCount < 4)
                 {
