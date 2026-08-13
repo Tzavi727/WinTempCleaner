@@ -56,12 +56,12 @@ namespace WinTempCleaner.Services
                 }
                 catch (IOException)
                 {
-                    TempDirErrorName.Add(Path.GetDirectoryName(dir) ?? "Unnamed Directory");
+                    TempDirErrorName.Add(Path.GetFileName(dir) ?? "Unnamed Directory");
                     FailedDirDeleteCount++;
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    TempDirErrorName.Add(Path.GetDirectoryName(dir) ?? "Unnamed Directory");
+                    TempDirErrorName.Add(Path.GetFileName(dir) ?? "Unnamed Directory");
                     FailedDirDeleteCount++;
                 }
             }
