@@ -9,7 +9,7 @@ string tempPath = fileService.GetTempPath();
 var tempFiles = fileService.GetTempFiles(tempPath);
 var tempDir = fileService.GetTempDirectories(tempPath);
 
-Task task1 = fileService.CleanAll(tempDir, tempFiles);
+Task task1 = fileService.CleanAll(tempFiles, tempDir);
 Task task2 = loadingService.LoadingAnimation();
 
 await Task.WhenAll(task1, task2);
